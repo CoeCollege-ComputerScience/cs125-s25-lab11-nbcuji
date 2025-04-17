@@ -28,4 +28,13 @@ print(scoreWord("lovely"))
 
 # Note - add your code here if you completed the "Competency" option on the quiz
 def topNWords(length, numWords):
-    print("To do if outlined on quiz")
+    topscoringwords = {}
+    with open("Scrabble.txt") as f:
+        for line in f:
+            word = line.strip()
+            if len(word) == length:
+                score = scoreWord(word)
+                topscoringwords[word] = score
+    sortedWords = sorted(topscoringwords.items(), key=lambda x: x[1], reverse=True)
+    return sortedWords[:numWords]
+print(topNWords(7, 10))
